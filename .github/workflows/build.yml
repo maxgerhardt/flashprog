@@ -23,9 +23,9 @@ jobs:
             make
             sudo make install
             cd ../..
-            CONFIG_STATIC=yes make -j4 V=1
+            CONFIG_STATIC=no make -j4 V=1
             mkdir flashprog_installed
-            CONFIG_STATIC=yes make -j4 install DESTDIR=$(pwd)/flashprog_installed/
+            CONFIG_STATIC=no make -j4 install DESTDIR=$(pwd)/flashprog_installed/
             ls -R flashprog_installed
             file flashprog_installed/usr/local/sbin*
             ldd flashprog_installed/usr/local/sbin*

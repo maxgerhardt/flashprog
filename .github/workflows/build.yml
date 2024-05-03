@@ -14,7 +14,7 @@ jobs:
           copy_artifact_path: flashprog.tar.gz
           image_additional_mb: 1024
           commands: |
-            sudo apt-get install -y build-essential make libusb-dev libftdi-dev libjaylink-dev libpci-dev zlib1g-dev libgpiod-dev
+            sudo apt-get install -y build-essential make libusb-dev libusb-1.0-0-dev libftdi-dev libjaylink-dev libpci-dev zlib1g-dev libgpiod-dev git-core cmake doxygen
             make -j4 V=1
             mkdir flashprog_installed
             make -j4 install DESTDIR=$(pwd)/flashprog_installed/

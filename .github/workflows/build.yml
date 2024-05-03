@@ -22,7 +22,7 @@ jobs:
             cmake  -DCMAKE_INSTALL_PREFIX="/usr" ../
             make
             sudo make install
-            cd ..
+            cd ../..
             make -j4 V=1
             mkdir flashprog_installed
             make -j4 install DESTDIR=$(pwd)/flashprog_installed/

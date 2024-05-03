@@ -29,6 +29,12 @@ jobs:
             ls -R flashprog_installed
             file flashprog_installed/usr/local/sbin/*
             ldd flashprog_installed/usr/local/sbin/*
+            cp /lib/arm-linux-gnueabihf/libpci.so.3 flashprog_installed/usr/local/sbin/.
+            cp /lib/arm-linux-gnueabihf/libusb-1.0.so.0 flashprog_installed/usr/local/sbin/.
+            cp /lib/arm-linux-gnueabihf/libftdi1.so.2 flashprog_installed/usr/local/sbin/.
+            cp /lib/arm-linux-gnueabihf/libgpiod.so.2 flashprog_installed/usr/local/sbin/.
+            cp /lib/arm-linux-gnueabihf/libjaylink.so.0 flashprog_installed/usr/local/sbin/.
+             /lib/arm-linux-gnueabihf/libudev.so.1 flashprog_installed/usr/local/sbin/.
             tar -cvf flashprog.tar.gz -C flashprog_installed .
       - uses: actions/upload-artifact@v3
         with:

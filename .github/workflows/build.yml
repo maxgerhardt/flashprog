@@ -1,0 +1,28 @@
+name: Build Binaries
+on: [push, pull_request]
+
+jobs:
+  build-armv7l:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pguyot/arm-runner-action@v2
+        id: build_image
+        with:
+          cpu: cortex-a7
+          base_image: raspios_lite:latest
+          copy_artifact_path: flashprog.tar.gz
+          image_additional_mb: 1024
+          commands: |
+            sudo apt-get install -y build-essential make libusb-dev libftdi-dev libjaylink-dev libpci-dev zlib-devel libgpiod-dev
+            make -j4 V=1
+            mkdir flashprog_installed
+            make -j4 install DESTDIR=$(pwd)/flashprog_installed/
+            ls -R flashprog_installed
+            file flashprog_installed/bin/*
+            ldd flashprog_installed/bin/*
+            tar -cvf flashprog.tar.gz -C flashprog_installed .
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Linux ARMv7l
+          path: flashprog.tar.gz

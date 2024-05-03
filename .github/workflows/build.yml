@@ -14,7 +14,15 @@ jobs:
           copy_artifact_path: flashprog.tar.gz
           image_additional_mb: 1024
           commands: |
-            sudo apt-get install -y build-essential pkg-config make libusb-dev libusb-1.0-0-dev libftdi-dev libftdi1 libjaylink-dev libpci-dev zlib1g-dev libgpiod-dev git-core cmake doxygen
+            sudo apt-get install -y build-essential pkg-config make libusb-dev libusb-1.0-0-dev libjaylink-dev libpci-dev zlib1g-dev libgpiod-dev git-core cmake doxygen libconfuse-dev swig python-dev libboost-all-dev
+            git clone git://developer.intra2net.com/libftdi
+            cd libftdi1
+            mkdir build
+            cd build
+            cmake  -DCMAKE_INSTALL_PREFIX="/usr" ../
+            make
+            sudo make install
+            cd ..
             make -j4 V=1
             mkdir flashprog_installed
             make -j4 install DESTDIR=$(pwd)/flashprog_installed/

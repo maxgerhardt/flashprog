@@ -27,8 +27,8 @@ jobs:
             mkdir flashprog_installed
             CONFIG_STATIC=no make -j4 install DESTDIR=$(pwd)/flashprog_installed/
             ls -R flashprog_installed
-            file flashprog_installed/usr/local/sbin*
-            ldd flashprog_installed/usr/local/sbin*
+            file flashprog_installed/usr/local/sbin/*
+            ldd flashprog_installed/usr/local/sbin/*
             tar -cvf flashprog.tar.gz -C flashprog_installed .
       - uses: actions/upload-artifact@v3
         with:

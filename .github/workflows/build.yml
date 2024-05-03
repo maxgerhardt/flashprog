@@ -23,12 +23,12 @@ jobs:
             make
             sudo make install
             cd ../..
-            make -j4 V=1
+            CONFIG_STATIC=yes make -j4 V=1
             mkdir flashprog_installed
-            make -j4 install DESTDIR=$(pwd)/flashprog_installed/
+            CONFIG_STATIC=yes make -j4 install DESTDIR=$(pwd)/flashprog_installed/
             ls -R flashprog_installed
-            file flashprog_installed/bin/*
-            ldd flashprog_installed/bin/*
+            file flashprog_installed/usr/local/sbin*
+            ldd flashprog_installed/usr/local/sbin*
             tar -cvf flashprog.tar.gz -C flashprog_installed .
       - uses: actions/upload-artifact@v3
         with:
